@@ -1,0 +1,14 @@
+{
+  "name": "@ralsnet/conada-es-gen",
+  "version": "1.0.0",
+  "description": "",
+  "exports": {
+    ".": {
+      "types": "./example/v1/test_pb.d.ts",
+      "default": "./example/v1/test_pb.js"
+    }
+  },
+  "dependencies": {
+    "@bufbuild/protobuf": "^2.10.2"
+  }
+}

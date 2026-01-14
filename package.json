@@ -1,0 +1,44 @@
+{
+  "name": "@ralsnet/conada",
+  "version": "0.0.0",
+  "description": "",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "source": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "Ralsnet Inc.",
+  "license": "ISC",
+  "packageManager": "pnpm@10.18.1",
+  "peerDependencies": {
+    "@aws-sdk/client-sns": "^3.968.0",
+    "@aws-sdk/client-sqs": "^3.968.0",
+    "@bufbuild/protobuf": "^2.0.0",
+    "@connectrpc/connect": "^2.0.0"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-sns": "^3.968.0",
+    "@aws-sdk/client-sqs": "^3.968.0",
+    "@bufbuild/protobuf": "^2.0.0",
+    "@connectrpc/connect": "^2.0.0",
+    "@types/node": "^24.1.12",
+    "typescript": "^5.9.3"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "engines": {
+    "node": "24.x",
+    "pnpm": "10.18.1"
+  }
+}

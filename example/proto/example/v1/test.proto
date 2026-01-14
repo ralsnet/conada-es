@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package example.v1;
+
+message TestMessage {
+  string name = 1;
+}
+
+message TestRequest {
+  TestMessage message = 1;
+}
+
+message TestResponse {
+  bool success = 1;
+}
+
+service TestService {
+  rpc Test(TestRequest) returns (TestResponse);
+}
