@@ -48,13 +48,13 @@ jobs:
             echo "version=$VERSION" >> $GITHUB_OUTPUT
           else
             git fetch --tags --force
-            VERSION=$(git describe --tags --abbrev=0 --match "v*" | sed 's/^v//' || echo '0.0.1')
-            echo "version=$VERSION" >> $GITHUB_OUTPUT
+            VERSION=$(git describe --tags --abbrev=0 --match "v*" 2>/dev/null || echo 'v0.0.1')
+            echo "version=${VERSION#v}" >> $GITHUB_OUTPUT
           fi
 
       - name: Update package.json version
         run: |
-          pnpm version --no-git-checks --no-commit-hooks "${{ steps.get_version.outputs.version }}"
+          npm version --no-git-tag-version "${{ steps.get_version.outputs.version }}"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -63,6 +63,9 @@ jobs:
         run: pnpm build
 
       - name: Publish to GitHub Packages
+        run: |
+          npm config set @ralsnet:registry https://npm.pkg.github.com
+          npm config set //npm.pkg.github.com/:_authToken ${GITHUB_TOKEN}
+          pnpm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: pnpm publish --no-git-checks
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
